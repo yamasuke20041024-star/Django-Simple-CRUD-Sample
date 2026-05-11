@@ -25,16 +25,16 @@ class ItemFilterView(LoginRequiredMixin, FilterView):
     paginate_by = 10
 
     # 検索条件をセッションに保存する
-    def get(self, request, **kwargs):
+    def get(self, request, *args, **kwargs):
         if request.GET:
-            request.session['query'] = request.GET
+            request.session['query'] = request.GET.dict()
         else:
             request.GET = request.GET.copy()
             if 'query' in request.session.keys():
                 for key in request.session['query'].keys():
                     request.GET[key] = request.session['query'][key]
 
-        return super().get(request, **kwargs)
+        return super().get(request, *args, **kwargs)
 
 
 # 詳細画面
