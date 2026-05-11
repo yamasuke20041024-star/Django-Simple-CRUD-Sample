@@ -7,6 +7,7 @@ class Item(models.Model):
     SEX_CHOICES = (
         (1, '男性'),
         (2, '女性'),
+        (3, 'その他'),
     )
 
     name = models.CharField(
